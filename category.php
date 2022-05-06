@@ -1,0 +1,168 @@
+<?php
+require_once"dbconfig.php";
+//$result=select("select * from items where elecid='".$_REQUEST['id']."'")
+$result=select("SELECT DISTINCT category FROM items" );
+
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Bajpayee Medical Store</title>
+
+    
+
+    <!-- Core Stylesheet -->
+    <link href="style.css" rel="stylesheet">
+
+    <!-- Responsive CSS -->
+    <link href="css/responsive/responsive.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header_area" id="header">
+        <div class="container-fluid h-100">
+            <div class="row h-100">
+                <div class="col-12 h-100">
+                    <nav class="h-100 navbar navbar-expand-lg">
+					 <a class="navbar-brand" href="index.php">Bajpayee Medical Store</a>
+                       
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav" aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
+                        <!-- Nav -->
+                        <div class="collapse navbar-collapse" id="dorneNav">
+                            <ul class="navbar-nav mr-auto" id="dorneMenu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index.php"> <span class="sr-only">(current)</span></a>
+                                </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="mycart.php"></a>
+                                </li>
+                                
+                                <li class="nav-item">
+                                    <a class="nav-link" href="logout.php"></a>
+                                </li>
+                            </ul>
+                            
+                           
+						       <div class="dorne-signin-btn">
+							   <?php
+							   if(isset($_SESSION['login']))
+							   {
+								   ?><a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+                              
+								<a class="nav-link" href="mycart.php">My Cart</a>
+								<a class="nav-link" href="category.php">Category</a>
+                              
+                                	<a class="nav-link" href="logout.php">Logout</a>
+								   
+								   <?php
+							   }
+								   else
+								   {
+									   ?>
+									   <a href="register.php">Sign in  or Register</a>
+								<a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+								
+								   <?php
+								   }
+							   
+							   ?>
+                                
+                            </div>
+                           
+                            
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Breadcumb Area Start ***** -->
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/hero-1.jpg)"></div>
+	</br>
+    
+	<section class="dorne-listing-destinations-area section-padding-100-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading dark text-center">
+                        <span></span>
+                        <h4>Category</h4>
+                        </div>
+                </div>
+            </div>
+            <div class="row">
+			
+                <?php
+				while($r=mysqli_fetch_array($result))
+				{
+				?>
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <a href="cat_detail.php?cat=<?=$r[0]?>"><div class="single-features-area mb-50">
+                        <!-- Price -->
+                        
+                        <div class="feature-content d-flex align-items-center justify-content-between">
+                            <div class="feature-title">
+                                <h5><?=$r[0]?></h5>
+                                <p>View Items</p>
+                            </div>
+                           
+                        </div>
+                    </div></a>
+                </div><?php
+				}
+				?>
+                <!-- Single Features Area -->
+                
+            </div>
+        </div>
+    </section>
+	
+	<footer class="dorne-footer-area">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 d-md-flex align-items-center justify-content-between">
+                    <div class="footer-text">
+                         <h2><font color="black">USEFUL LINKS</font></h2>
+<ul>
+
+<li style="color:black;"><a style="font-size:100%;" href="https://cdsco.gov.in/opencms/opencms/en/Home/">CDSCO</a></li>
+<li style="color:black;"><a style="font-size:100%;" href="https://www.drugscontrol.org/">DRUGCONTROL</a></li>
+<li style="color:black;"><a style="font-size:100%;" href="https://pharmaceuticals.gov.in/">PHARMACEUTICALS</a></li>
+</ul> 
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ****** Footer Area End ****** -->
+
+    <!-- jQuery-2.2.4 js -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap-4 js -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="js/others/plugins.js"></script>
+    <!-- Active JS -->
+    <script src="js/active.js"></script>
+</body>
+
+</html>
